@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ProyectoIntegrador</string>
+    <string name="hint_username">Username</string>
+    <string name="hint_password">Password</string>
+    <string name="txt_btn_login">Login</string>
+    <string name="main_page">Pagina Principal</string>
+
+    <string name="INEGI_ACCESS_TOKEN">0345de0a-9b0f-c7ee-b657-5e123cb2da5f</string>
+    <string name="INEGI_REPORTE_INDICADOR">6200240321</string>
+    <string name="INEGI_URL">http://www3.inegi.org.mx//sistemas/api/indicadores/v1/Indicador/6200240321/00000/es/false/json/{INEGI_ACCESS_TOKEN}</string>
+
+
+
+
+</resources>
