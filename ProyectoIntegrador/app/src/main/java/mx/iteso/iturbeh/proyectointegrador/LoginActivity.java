@@ -1,6 +1,5 @@
 package mx.iteso.iturbeh.proyectointegrador;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,27 +8,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.orm.query.Condition;
-import com.orm.query.Select;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
-import java.util.List;
-
-import mx.iteso.iturbeh.proyectointegrador.modelo.db.UserSession;
-import mx.iteso.iturbeh.proyectointegrador.services.ProyectoIntegradorSharedPreferences;
+import mx.iteso.iturbeh.proyectointegrador.modelo.db.ImssDeteccionModel;
 
 
 /**
  * Created by iturbeh on 3/2/18.
  */
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends BaseActivity {
 
 
     EditText username;
     EditText password;
     Button login;
-    ProyectoIntegradorSharedPreferences proyectoIntegradorSharedPreferences;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,24 +32,18 @@ public class LoginActivity extends Activity {
         setContentView(R.layout.activity_login);
         username= findViewById(R.id.txt_user);
         password= findViewById(R.id.txt_password);
+        validaDB();
 
-
-        proyectoIntegradorSharedPreferences= new ProyectoIntegradorSharedPreferences(this, "CURRENT_USER");
         String userName= proyectoIntegradorSharedPreferences.getKey("userName");
 
+
+
         if(!userName.isEmpty() ){
-            /*
-            Se busca la sesion activa y su access_token en la db
-             */
-
-            List<UserSession> userSessionList=UserSession.find(UserSession.class,"user_name=?",userName);
-            //Si ya existe la sesion de usuario se inicia la actividad de mainPage
-            if(!userSessionList.isEmpty()){
-
-                Intent intent = new Intent(LoginActivity.this, RestExampleActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
-            }
+
         }
+
 
 
 
@@ -67,18 +56,11 @@ public class LoginActivity extends Activity {
         String pwd= password.getText().toString();
 
 
-
-
             if(!user.equals("") && !pwd.equals("")){
 
                 if(user.equals("ms710905")&& pwd.equals("ms710905")) {
-                    /*
-                           Se crea la sharedPreferences y se inserta el registro en db
-                     */
                     proyectoIntegradorSharedPreferences.savePreference("userName",user);
-                    UserSession userSession= new UserSession(user,"ACCESS_TOKEN");
-                    userSession.save();
-                    Intent intent = new Intent(LoginActivity.this, RestExampleActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 }
@@ -92,13 +74,39 @@ public class LoginActivity extends Activity {
 
             }
 
+    }
+
+    private void validaDB(){
+        int total=imssDeteccionesDBHelper.getAllDetecciones().size();
+
+        /*
+        Si no hay datos en la base, se carga el dataset
+        inicialmente esto se hacia con una llamada rest
+        entidad, padecimiento,valor, year
+         */
+        if(total==0)
+        {
+            InputStream stream=getResources().openRawResource(R.raw.detecciones);
+            InputStreamReader isr= new InputStreamReader(stream);
+            BufferedReader reader= new BufferedReader(isr);
+            String temp=null;
+            ImssDeteccionModel idm;
+            try {
+                while ((temp = reader.readLine()) != null) {
+                    String[] campos= temp.split(",");
+                    idm= new ImssDeteccionModel(campos[0],campos[1], Integer.parseInt(campos[2]),Integer.parseInt(campos[3]));
+                    imssDeteccionesDBHelper.addDeteccion(idm);
+                }
+            }
+            catch(Exception e){
+                System.out.println(e);
+
+            }
 
 
 
 
-
-
-
+        }
     }
 
 

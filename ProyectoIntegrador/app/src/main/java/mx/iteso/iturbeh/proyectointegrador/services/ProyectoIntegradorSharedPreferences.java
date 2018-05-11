@@ -2,6 +2,7 @@ package mx.iteso.iturbeh.proyectointegrador.services;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -9,8 +10,8 @@ import java.util.Map;
 public class ProyectoIntegradorSharedPreferences {
 
     private Activity activity;
-    private android.content.SharedPreferences sharedPreferences;
-    private android.content.SharedPreferences.Editor editor;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
 
     public ProyectoIntegradorSharedPreferences(Activity activity, String keyShared) {

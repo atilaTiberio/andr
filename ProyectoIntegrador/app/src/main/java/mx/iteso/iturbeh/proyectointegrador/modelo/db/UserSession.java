@@ -1,12 +1,12 @@
 package mx.iteso.iturbeh.proyectointegrador.modelo.db;
 
-import com.orm.SugarRecord;
+
 
 /**
  * Created by iturbeh on 3/25/18.
  */
 
-public class UserSession extends SugarRecord {
+public class UserSession {
 
     String userName;
     String accessToken;

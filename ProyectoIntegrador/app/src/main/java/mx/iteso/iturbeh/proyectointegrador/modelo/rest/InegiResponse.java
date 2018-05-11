@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.jjoe64.graphview.series.DataPoint;
-import com.orm.SugarRecord;
+
 
 import java.util.List;
 

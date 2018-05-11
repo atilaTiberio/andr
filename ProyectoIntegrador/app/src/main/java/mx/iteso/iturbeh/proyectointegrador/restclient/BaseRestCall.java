@@ -5,11 +5,12 @@ import android.os.AsyncTask;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import com.orm.SugarRecord;
+
 import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
+
 import mx.iteso.iturbeh.proyectointegrador.BaseGraphActivity;
-import mx.iteso.iturbeh.proyectointegrador.RestExampleActivity;
 
 /**
  * Created by iturbeh on 3/27/18.

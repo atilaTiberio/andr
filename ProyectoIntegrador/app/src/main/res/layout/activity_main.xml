@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        android:id="@+id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detecciones 2000-2015"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+
+        />
+
+
+    <ListView
+        android:id="@+id/main_list_view"
+        android:layout_below="@id/main_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
+
+    </ListView>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/include_progress_bar"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+
+        />
+
+</RelativeLayout>

@@ -2,21 +2,19 @@ package mx.iteso.iturbeh.proyectointegrador;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.orm.SugarRecord;
-
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import mx.iteso.iturbeh.proyectointegrador.modelo.db.InegiReporteIndicador;
 import mx.iteso.iturbeh.proyectointegrador.modelo.rest.InegiResponse;
@@ -29,15 +27,17 @@ import mx.iteso.iturbeh.proyectointegrador.restclient.BaseRestCall;
 public class RestExampleActivity extends BaseGraphActivity<List<InegiResponse>> {
 
     GraphView graphView;
-
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_page);
+        setContentView(R.layout.activity_graph_page);
         graphView=findViewById(R.id.main_graph);
+        progressBar=findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.INVISIBLE);
 
-        List<InegiReporteIndicador> resultado=InegiReporteIndicador.find(InegiReporteIndicador.class,"indicador=?",getString(R.string.INEGI_REPORTE_INDICADOR));
+        List<InegiReporteIndicador> resultado=new ArrayList<>();
 
         if(resultado.isEmpty()) {
 
@@ -67,7 +67,7 @@ public class RestExampleActivity extends BaseGraphActivity<List<InegiResponse>> 
             inegiReporteIndicadors.add(inegiReporteIndicador);
         }
 
-        SugarRecord.saveInTx(inegiReporteIndicadors);
+
         graphInit(inegiReporteIndicadors);
 
     }
@@ -97,6 +97,8 @@ public class RestExampleActivity extends BaseGraphActivity<List<InegiResponse>> 
         graphView.setTitle("Usuarios de servicios de salud pública");
         graphView.getGridLabelRenderer().setVerticalAxisTitle("Porcentaje");
         graphView.getGridLabelRenderer().setHorizontalAxisTitle("Año");
+
+
 
 
     }

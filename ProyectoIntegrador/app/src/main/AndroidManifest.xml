@@ -3,10 +3,11 @@
     >
 
     
-<uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
     <application
-        android:name="com.orm.SugarApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,16 +16,9 @@
         android:theme="@style/AppTheme" >
 
 
-        <meta-data android:name="DATABASE" android:value="proyecto_integrador.db" />
-        <meta-data android:name="VERSION" android:value="4" />
-        <meta-data android:name="QUERY_LOG" android:value="true" />
-        <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="mx.iteso.iturbeh.proyectointegrador.modelo.db" />
-
-
     <activity
         android:name=".LoginActivity">
         <intent-filter>
-
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
@@ -32,7 +26,9 @@
     </activity>
 
         <activity android:name=".RestExampleActivity"/>
-
+        <activity android:name=".MainActivity" />
+        <activity android:name=".GraphPadecimientoYearActivity"/>
+        <activity android:name=".GraphPadecimientoYearEntidadActivity"/>
 
     </application>
 

@@ -1,12 +1,10 @@
 package mx.iteso.iturbeh.proyectointegrador.modelo.db;
 
-import com.orm.SugarRecord;
-
 /**
  * Created by iturbeh on 3/25/18.
  */
 
-public class InegiReporteIndicador extends SugarRecord{
+public class InegiReporteIndicador {
 
     String indicador;
     Integer anio;
